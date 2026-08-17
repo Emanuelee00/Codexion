@@ -1,4 +1,5 @@
 #include "helper.h"
+#include <pthread.h>
 
 
 void set_config(t_config *config, char *argv[]) {
@@ -10,6 +11,9 @@ void set_config(t_config *config, char *argv[]) {
     (*config).number_of_compiles_required = atoi(argv[6]);
     (*config).dongle_cooldown = atoi(argv[7]);
     (*config).scheduler = argv[8];
+    (*config).simulation_over = 0;
+    pthread_mutex_init(&(*config).print_lock, NULL);
+    pthread_mutex_init(&(*config).simulation_over_lock, NULL);
 }
 void print_config(t_config *config) {
     printf("number_of_coders: %d\n", config->number_of_coders);
