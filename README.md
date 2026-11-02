@@ -8,7 +8,6 @@ Several coders sit in a circle. Between each pair there is one USB dongle. A cod
 
 - One thread per coder, plus one monitor thread.
 - Dongles protected by mutexes and condition variables, with a cooldown after each release.
-- Two scheduling policies for who gets a dongle first: `fifo` and `edf` (earliest deadline first).
 - Burnout detection and a clean stop.
 
 ## Build and run
@@ -19,7 +18,7 @@ make
            time_to_refactor number_of_compiles_required dongle_cooldown scheduler
 ```
 
-Times are in milliseconds. `scheduler` is `fifo` or `edf`. Example:
+Times are in milliseconds. `scheduler` must be `fifo` or `edf`: the argument is validated, but the scheduling policies are not implemented yet. Example:
 
 ```sh
 ./codexion 5 800 200 200 200 3 50 fifo
@@ -27,6 +26,6 @@ Times are in milliseconds. `scheduler` is `fifo` or `edf`. Example:
 
 ## Status
 
-Work in progress. The simulation runs, but the program still prints debug lines next to the event log.
+Work in progress. The simulation builds and runs, but the `fifo` and `edf` policies are not implemented yet, and the program still prints debug lines next to the event log.
 
 Written as a project of the 42 curriculum.
